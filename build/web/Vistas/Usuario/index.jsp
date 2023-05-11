@@ -13,5 +13,8 @@
     </head>
     <body>
         <h1>Hello World!</h1>
+        <form name="irLogin" action="login.jsp" method="POST">
+            <input type="submit" value="Ir al Login!" name="btn_irLogin" />
+        </form>
     </body>
 </html>

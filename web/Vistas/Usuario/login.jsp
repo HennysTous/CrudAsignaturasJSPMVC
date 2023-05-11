@@ -13,7 +13,7 @@
     </head>
     <body>
     <center><div class="container mt-5">
-            <form method="post" action="/Login/UsuarioControllador">
+            <form method="post" action="register.jsp">
                 <div class="card">
                     <div class="card-body">
                         <h2>Iniciar Sesion</h2>

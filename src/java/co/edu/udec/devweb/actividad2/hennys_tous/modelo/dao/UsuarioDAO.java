@@ -52,11 +52,48 @@ public class UsuarioDAO {
             e.printStackTrace();
         }
     }
+    public void actualizarUsuario(Usuario usuario) throws SQLException {
+        try {
+            PreparedStatement ps = conexion.prepareStatement(
+                    "UPDATE usuarios SET cc=?, pass=?, nombre=?, apellido=?, genero=?, email=?, respuesta=?"
+                    + "WHERE cc = "+usuario.getCc()+"");
+            ps.setInt(1, usuario.getCc());
+            ps.setString(2, usuario.getPass());
+            ps.setString(3, usuario.getNombre());
+            ps.setString(4, usuario.getApellido());
+            ps.setString(5, usuario.getGenero());
+            ps.setString(6, usuario.getEmail());
+            ps.setString(7, usuario.getRespuesta());
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
     public Usuario buscarPorEmail(String email) throws SQLException {
         PreparedStatement ps = conexion.prepareStatement("SELECT * FROM usuarios "
                 + "WHERE email='?'");
         ps.setString(1, email);
+
+        ResultSet rs = ps.executeQuery();
+        Usuario usuario = null;
+        if (rs.next()) {
+            usuario = new Usuario();
+            usuario.setCc(rs.getInt("cc"));
+            usuario.setPass(rs.getString("pass"));
+            usuario.setNombre(rs.getString("nombre"));
+            usuario.setApellido(rs.getString("apellido"));
+            usuario.setGenero(rs.getString("genero"));
+            usuario.setEmail(rs.getString("email"));
+            usuario.setRespuesta(rs.getString("respuesta"));
+
+        }
+        return usuario;
+    }
+    public Usuario buscarPorCedula(String cc) throws SQLException {
+        PreparedStatement ps = conexion.prepareStatement("SELECT * FROM usuarios "
+                + "WHERE cc='?'");
+        ps.setString(1, cc);
 
         ResultSet rs = ps.executeQuery();
         Usuario usuario = null;
@@ -102,4 +139,6 @@ public class UsuarioDAO {
         }
 
     }
+    
+    
 }

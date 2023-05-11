@@ -1,6 +1,6 @@
 <%-- 
-    Document   : index
-    Created on : 10/05/2023, 10:15:05 a. m.
+    Document   : register
+    Created on : 11/05/2023, 10:52:03 a. m.
     Author     : ADMIN
 --%>
 
@@ -13,8 +13,5 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        <form name="irLogin" action="login.jsp" method="POST">
-            <input type="submit" value="Ir al Login!" name="btn_irLogin" />
-        </form>
     </body>
 </html>
