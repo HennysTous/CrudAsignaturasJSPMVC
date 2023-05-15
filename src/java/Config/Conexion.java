@@ -6,7 +6,6 @@ package Config;
 
 
 import java.sql.*;
-
 /**
  *
  * @author ADMIN
@@ -14,15 +13,18 @@ import java.sql.*;
 public class Conexion {
 
     Connection con;
-    public Connection Conexion() {
+    String driver = "com.mysql.cj.jdbc.Driver";
+    public Conexion() {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
-            con = DriverManager.getConnection("jbdc:mysql://localhost:3308/asignaturascrud", "root", "1234");
+            Class.forName(driver);
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3308/asignaturascrud", "root", "");
         } catch (Exception e) {
             System.err.println("Conexion Fallida, error" + e);
         }
+        
+    }
+    public Connection getConnection(){
         return con;
     }
-    
     
 }

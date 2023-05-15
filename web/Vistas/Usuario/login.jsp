@@ -13,12 +13,12 @@
     </head>
     <body>
     <center><div class="container mt-5">
-            <form method="post" action="register.jsp">
+            <form method="post" action="${pageContext.request.contextPath}/UsuarioControlador?accion=login">
                 <div class="card">
                     <div class="card-body">
                         <h2>Iniciar Sesion</h2>
                         <input type="text" name="txtemail" class="form-control mt-2" placeholder="Ingrese su email">
-                        <input type="password" name="txtpassword" class="form-control mt-2" placeholder="Ingrese su contraseña">
+                        <input type="pass" name="txtpass" class="form-control mt-2" placeholder="Ingrese su contraseña">
                         <input type="submit" name="btn-login" class="btn btn-primary btn-block mt-2" value="Ingresar">
                     </div>
                 </div>
