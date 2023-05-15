@@ -4,6 +4,10 @@
     Author     : ADMIN
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%
+String rutaRaiz = request.getServletContext().getContextPath();
+String msj = request.getParameter("msj");
+%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,16 +17,17 @@
     </head>
     <body>
     <center><div class="container mt-5">
-            <form method="post" action="${pageContext.request.contextPath}/UsuarioControlador?accion=login">
+            <form method="post" action="<%= rutaRaiz %>/usuario">
                 <div class="card">
                     <div class="card-body">
                         <h2>Iniciar Sesion</h2>
                         <input type="text" name="txtemail" class="form-control mt-2" placeholder="Ingrese su email">
                         <input type="pass" name="txtpass" class="form-control mt-2" placeholder="Ingrese su contraseña">
-                        <input type="submit" name="btn-login" class="btn btn-primary btn-block mt-2" value="Ingresar">
+                        <input type="submit" name="accion" class="btn btn-primary btn-block mt-2" value="Ingresar">
                     </div>
                 </div>
             </form>
+
         </div>
     </center>
 </body>

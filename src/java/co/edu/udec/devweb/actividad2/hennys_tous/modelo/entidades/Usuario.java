@@ -4,37 +4,76 @@
  */
 package co.edu.udec.devweb.actividad2.hennys_tous.modelo.entidades;
 
+import java.io.Serializable;
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
 /**
  *
  * @author ADMIN
  */
-public class Usuario {
-   private int cc;
-   private String pass;
-   private String nombre;
-   private String apellido;
-   private String genero;
-   private String email;
-   private String respuesta;
+@Entity
+@Table(name = "usuarios", catalog = "asignaturascrud", schema = "")
+@NamedQueries({
+    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u"),
+    @NamedQuery(name = "Usuarios.findByCc", query = "SELECT u FROM Usuarios u WHERE u.cc = :cc"),
+    @NamedQuery(name = "Usuarios.findByPass", query = "SELECT u FROM Usuarios u WHERE u.pass = :pass"),
+    @NamedQuery(name = "Usuarios.findByNombre", query = "SELECT u FROM Usuarios u WHERE u.nombre = :nombre"),
+    @NamedQuery(name = "Usuarios.findByApellido", query = "SELECT u FROM Usuarios u WHERE u.apellido = :apellido"),
+    @NamedQuery(name = "Usuarios.findByGenero", query = "SELECT u FROM Usuarios u WHERE u.genero = :genero"),
+    @NamedQuery(name = "Usuarios.findByEmail", query = "SELECT u FROM Usuarios u WHERE u.email = :email"),
+    @NamedQuery(name = "Usuarios.findByRespuesta", query = "SELECT u FROM Usuarios u WHERE u.respuesta = :respuesta")})
+public class Usuario implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+    @Id
+    @Basic(optional = false)
+    @Column(name = "cc", nullable = false)
+    private Integer cc;
+    @Basic(optional = false)
+    @Column(name = "pass", nullable = false, length = 20)
+    private String pass;
+    @Basic(optional = false)
+    @Column(name = "nombre", nullable = false, length = 20)
+    private String nombre;
+    @Basic(optional = false)
+    @Column(name = "apellido", nullable = false, length = 20)
+    private String apellido;
+    @Basic(optional = false)
+    @Column(name = "genero", nullable = false, length = 20)
+    private String genero;
+    @Basic(optional = false)
+    @Column(name = "email", nullable = false, length = 30)
+    private String email;
+    @Column(name = "respuesta", length = 100)
+    private String respuesta;
 
     public Usuario() {
     }
 
-    public Usuario(int cc, String pass, String nombre, String apellido, String genero, String email, String respuesta) {
+    public Usuario(Integer cc) {
+        this.cc = cc;
+    }
+
+    public Usuario(Integer cc, String pass, String nombre, String apellido, String genero, String email) {
         this.cc = cc;
         this.pass = pass;
         this.nombre = nombre;
         this.apellido = apellido;
         this.genero = genero;
         this.email = email;
-        this.respuesta = respuesta;
     }
 
-    public int getCc() {
+    public Integer getCc() {
         return cc;
     }
 
-    public void setCc(int cc) {
+    public void setCc(Integer cc) {
         this.cc = cc;
     }
 
@@ -86,6 +125,29 @@ public class Usuario {
         this.respuesta = respuesta;
     }
 
-    
+    @Override
+    public int hashCode() {
+        int hash = 0;
+        hash += (cc != null ? cc.hashCode() : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object object) {
+        // TODO: Warning - this method won't work in the case the id fields are not set
+        if (!(object instanceof Usuario)) {
+            return false;
+        }
+        Usuario other = (Usuario) object;
+        if ((this.cc == null && other.cc != null) || (this.cc != null && !this.cc.equals(other.cc))) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "co.edu.udec.devweb.actividad2.hennys_tous.modelo.entidades.Usuarios[ cc=" + cc + " ]";
+    }
     
 }
